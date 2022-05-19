@@ -1,32 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { CartContextProvider } from "./store/cart-context";
-//import { initializeApp } from "firebase/app";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CartContextProvider } from "./store/cart";
+import { Cart, ItemDetailContainer, ItemListContainer } from "./pages";
+import { NavBar } from "./components";
+import "./index.css";
 
-/*const firebaseConfig = {
-  apiKey: "AIzaSyC_ZCnBkWFFMw5YGVB1nY7Ka2HZ-JEwnrU",
-  authDomain: "proyecto-final-medina.firebaseapp.com",
-  projectId: "proyecto-final-medina",
-  storageBucket: "proyecto-final-medina.appspot.com",
-  messagingSenderId: "18929460154",
-  appId: "1:18929460154:web:56374b3765ab87cdf2f383"
-};
+// https://coderpad.io/blog/development/why-react-18-broke-your-app/
 
-initializeApp(firebaseConfig);*/
-
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <CartContextProvider>
-        <App />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
+          <Route path="/item/:id" element={<ItemDetailContainer />} />
+        </Routes>
       </CartContextProvider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

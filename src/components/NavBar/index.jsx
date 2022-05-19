@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import CartWidget from '../CartWidget/CartWidget';
-import './NavBar.css';
+import { CartWidget } from '../';
+import './index.css';
 
-function NavBar(props) {
+export const NavBar = (props) => {
     return (
         <div className='nav-container'>
             <Link to='/'>
@@ -21,5 +21,3 @@ function NavBar(props) {
         </div>
     );
 }
-
-export default NavBar;
