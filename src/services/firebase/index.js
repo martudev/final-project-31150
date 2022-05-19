@@ -1,14 +1,16 @@
+// * I recomend to use the import specific packge import module @firebase/app
 import { initializeApp } from "firebase/app";
 import {
   addDoc,
   collection,
   doc,
-  DocumentReference,
   getDoc,
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
+  writeBatch,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -54,7 +56,34 @@ export const getAllProducts = () => {
   return getDocs(q);
 };
 
-export const sendOrder = (order) => {
+// * Examples that we explained in class 13
+
+export const exmpleSendOrder = (order) => {
   const ordersCollection = collection(db, "orders");
   return addDoc(ordersCollection, order);
+};
+
+export const exampleUpdateOrder = (orderId, updatedOrder) => {
+  if (typeof orderId !== "string") throw new Error("orderId must be a string");
+  // * Instead of validtion by updatedOrder is object or not, we can add schema json validation to our app
+  // * For example we can use a library called 'Ajv' to validate our schemas: https://www.npmjs.com/package/ajv
+  // * For example we can use a library called 'jsonschema' to validate our schemas: https://www.npmjs.com/package/jsonschema
+  if (typeof updatedOrder !== "object")
+    throw new Error("updatedOrder must be a valid object");
+
+  const orderDoc = doc(db, "orders", orderId);
+  return updateDoc(orderDoc, updatedOrder);
+};
+
+export const exampleBatchUpdateOrder = async () => {
+  const batch = writeBatch(db);
+
+  const docOrders = doc(db, "orders");
+
+  batch.set(docOrders, { total: 150 });
+  batch.update(docOrders, { total: 1000 });
+  batch.delete(docOrders);
+
+  // Runs all the batch operations
+  await batch.commit();
 };
