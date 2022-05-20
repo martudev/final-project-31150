@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import CartContext from '../../store/cart-context';
-import ItemCount from '../ItemCount/ItemCount';
-import './ItemDetail.css'
+import CartContext from '../../store/cart';
+import { ItemCount } from '../';
+import './index.css'
 
-function ItemDetail({ item }) {
-    console.log(item)
+export const ItemDetail = ({ item }) => {
     const cartCtx = useContext(CartContext);
 
     function addHandler(quantityToAdd) {
@@ -38,5 +37,3 @@ function ItemDetail({ item }) {
     </div>
     )
 }
-
-export default ItemDetail

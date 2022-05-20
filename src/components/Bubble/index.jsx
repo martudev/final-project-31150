@@ -1,12 +1,10 @@
 import React from 'react';
-import './Bubble.css';
+import './index.css';
 
-function Bubble({ children, isButton, onBubbleClick }) {
+export const Bubble = ({ children, isButton, onBubbleClick }) => {
   return (
     <div className={`bubble ${isButton ? 'bubble-button' : ''}`} onClick={() => isButton && onBubbleClick()}>
         { children }
     </div>
   )
 }
-
-export default Bubble

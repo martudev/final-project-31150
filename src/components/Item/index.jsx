@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import CartContext from '../../store/cart-context';
-import Bubble from '../Bubble/Bubble';
-import './Item.css';
+import CartContext from '../../store/cart';
+import { Bubble } from '../';
+import './index.css';
 
-function Item({ item }) {
+export const Item = ({ item }) => {
   const cartCtx = useContext(CartContext);
 
   return (
@@ -25,5 +25,3 @@ function Item({ item }) {
     </div>
   )
 }
-
-export default Item

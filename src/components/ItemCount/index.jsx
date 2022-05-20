@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './ItemCount.css';
+import './index.css';
 
-function ItemCount({ stock, initial, onAdd }) {
+export const ItemCount = ({ stock, initial, onAdd }) => {
     const [count, setCount] = useState(initial);
 
     function handlePlusButton() {
@@ -27,5 +27,3 @@ function ItemCount({ stock, initial, onAdd }) {
         </div>
     )
 }
-
-export default ItemCount

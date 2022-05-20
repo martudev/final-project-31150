@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import CartContext from '../../store/cart-context';
-import Bubble from '../Bubble/Bubble';
-import './CartItem.css';
+import CartContext from '../../store/cart';
+import { Bubble } from '../';
+import './index.css';
 
-function CartItem({ item }) {
+export const CartItem = ({ item }) => {
   const cartCtx = useContext(CartContext);
 
   return (
@@ -24,5 +24,3 @@ function CartItem({ item }) {
     </>
   )
 }
-
-export default CartItem
